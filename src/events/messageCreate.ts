@@ -5,6 +5,7 @@ export default <IEventHook>{
 	subscribe: async (client: Client) => {
 		client.on('messageCreate', async (message) => {
 			if (message.author.bot) return;
+			message.reply('MEOW TEST');
 		});
 	}
 }
