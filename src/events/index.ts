@@ -9,11 +9,12 @@ import fs from 'fs';
  */
 export function subscribe(client: Client): void {
 	// read events path
-	const modules: IEventHook[] = fs.readdirSync(__dirname)
-	// exclude non-event files
-		.filter((file: string) => !['hook', 'index'].some(ignored => file.startsWith(ignored)))
-	// require all of them
+	const modules: IEventHook[] = fs
+		.readdirSync(__dirname)
+		// exclude non-event files
+		.filter((file: string) => !['hook', 'index'].some((ignored) => file.startsWith(ignored)))
+		// require all of them
 		.map((file: string) => require(`./${file.split('.')[0]}`).default);
 	// subscribe to each module
-	modules.forEach(h => h.subscribe(client));
+	modules.forEach((h) => h.subscribe(client));
 }

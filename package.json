@@ -1,21 +1,35 @@
 {
-  "name": "meower",
-  "version": "1.0.0",
-  "description": "mraow paws discord bot",
-  "main": "build/index.js",
-  "scripts": {
-    "dev": "tsc-watch --onSuccess \"npm run start\"",
-    "build": "tsc",
-    "start": "node ."
-  },
-  "author": "Sarah Ohlin",
-  "license": "MIT",
-  "dependencies": {
-    "@discordjs/builders": "^0.13.0",
-    "@types/node": "^17.0.35",
-    "discord.js": "^13.7.0",
-    "dotenv": "^16.0.1",
-    "tsc-watch": "^5.0.3",
-    "typescript": "^4.6.4"
-  }
+	"name": "meower",
+	"version": "1.0.0",
+	"description": "mraow paws discord bot",
+	"main": "build/index.js",
+	"scripts": {
+		"dev": "tsc-watch --onSuccess \"npm run start\"",
+		"build": "tsc",
+		"start": "node .",
+		"lint": "prettier --check .",
+		"lint:fix": "prettier --write ."
+	},
+	"author": "Sarah Ohlin",
+	"license": "MIT",
+	"dependencies": {
+		"@discordjs/builders": "^0.13.0",
+		"@discordjs/rest": "^0.4.1",
+		"@types/node": "^17.0.35",
+		"dayjs": "^1.11.2",
+		"discord-api-types": "^0.33.1",
+		"discord.js": "^13.7.0",
+		"dotenv": "^16.0.1",
+		"module-alias": "^2.2.2",
+		"tsc-watch": "^5.0.3",
+		"typescript": "^4.6.4",
+		"winston": "^3.7.2"
+	},
+	"_moduleAliases": {
+		"@util": "build/util/",
+		"@commands": "build/commands/"
+	},
+	"devDependencies": {
+		"prettier": "^2.6.2"
+	}
 }

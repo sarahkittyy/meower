@@ -1,15 +1,19 @@
 {
-  "compilerOptions": {
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "outDir": "build/",
-    "strict": true
-  },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules/*"
-  ]
+	"compilerOptions": {
+		"allowJs": true,
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"outDir": "build/",
+		"strict": true,
+		"baseUrl": "src",
+		"paths": {
+			"@util/*": ["util/*"],
+			"@commands/*": ["commands/*"]
+		},
+		"target": "es6",
+		"moduleResolution": "node",
+		"module": "commonjs"
+	},
+	"include": ["src/**/*"],
+	"exclude": ["node_modules/*"]
 }
