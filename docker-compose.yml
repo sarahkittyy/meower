@@ -9,3 +9,13 @@ services:
       - ./:/home/node/
     user: '1000:1000'
     entrypoint: 'npm run dev'
+    depends_on:
+      - db
+  db:
+    container_name: meower-db
+    image: mariadb:latest
+    environment:
+      MARIADB_USER: development
+      MARIADB_PASSWORD: notsosecret
+      MARIADB_DATABASE: meower_bot
+      MARIADB_RANDOM_ROOT_PASSWORD: true

@@ -6,9 +6,13 @@
 		"outDir": "build/",
 		"strict": true,
 		"baseUrl": "src",
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
 		"paths": {
 			"@util/*": ["util/*"],
-			"@commands/*": ["commands/*"]
+			"@commands/*": ["commands/*"],
+			"@db/*": ["util/db/*"],
+			"@msg/*": ["messages/*"]
 		},
 		"target": "es6",
 		"moduleResolution": "node",
