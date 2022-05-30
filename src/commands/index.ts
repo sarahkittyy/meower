@@ -17,16 +17,12 @@ const commands: { [name: string]: ICommand } = fs //
 	.reduce((obj, ic: ICommand) => ({ ...obj, [ic.data.name]: ic }), {});
 
 export const deploy = async (guildId: string) => {
-	try {
-		log.info('Deploying slash commands...');
-		const rest = new REST({ version: '9' }).setToken(constants.TOKEN ?? 'UNSET');
-		await rest.put(Routes.applicationGuildCommands(constants.CLIENT_ID, guildId), {
-			body: Object.values(commands).map((c) => c.data.toJSON()),
-		});
-		log.info('Deployed slash commands!');
-	} catch (e) {
-		log.error(`Could not deploy slash commands: ${e}`);
-	}
+	log.info('Deploying slash commands...');
+	const rest = new REST({ version: '9' }).setToken(constants.TOKEN ?? 'UNSET');
+	await rest.put(Routes.applicationGuildCommands(constants.CLIENT_ID, guildId), {
+		body: Object.values(commands).map((c) => c.data.toJSON()),
+	});
+	log.info('Deployed slash commands!');
 };
 
 export const handleAutocomplete = async (interaction: AutocompleteInteraction) => {
