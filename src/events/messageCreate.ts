@@ -13,11 +13,11 @@ export default <IEventHook>{
 					return;
 				}
 				deploy(message.guildId)
+					.then(async () => await message.react('✅'))
 					.catch((e) => {
 						log.error(`Deploy error: ${e}`);
 						message.react('❌').catch(log.error);
-					})
-					.then(async () => await message.react('✅'));
+					});
 			}
 		});
 	},

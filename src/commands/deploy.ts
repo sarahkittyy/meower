@@ -12,6 +12,11 @@ export default <ICommand>{
 	callback: async (interaction: CommandInteraction) => {
 		if (!interaction.guildId) throw 'Not in a guild!';
 		deploy(interaction.guildId)
+			.then(async () => {
+				await interaction.reply({
+					content: 'Slash commands deployed!',
+				});
+			})
 			.catch(async (e) => {
 				log.error(`Deploy error: ${e}`);
 				await interaction
@@ -19,11 +24,6 @@ export default <ICommand>{
 						content: `Slash commands failed to deploy: ${e}!`,
 					})
 					.catch(log.error);
-			})
-			.then(async () => {
-				await interaction.reply({
-					content: 'Slash commands deployed!',
-				});
 			});
 	},
 };

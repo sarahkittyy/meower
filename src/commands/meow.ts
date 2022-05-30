@@ -4,7 +4,8 @@ import ICommand from './command';
 
 export default <ICommand>{
 	data: new SlashCommandBuilder() //
-		.setName('meow'),
+		.setName('meow')
+		.setDescription('meows a lot'),
 	callback: async (interaction: CommandInteraction) => {
 		const meows = ['meow', 'nya', 'mraow', 'raow', 'prr', 'raow', 'nya', 'raow'];
 		const meowCount = Math.floor(Math.random() * 6) + 3;
