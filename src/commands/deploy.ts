@@ -10,18 +10,20 @@ export default <ICommand>{
 		.setDescription('Deploy slash commands.')
 		.setDefaultPermission(false),
 	callback: async (interaction: CommandInteraction) => {
-		try {
-			if (!interaction.guildId) throw 'Not in a guild!';
-			await deploy(interaction.guildId);
-			await interaction.reply({
-				content: 'Slash commands deployed!',
+		if (!interaction.guildId) throw 'Not in a guild!';
+		deploy(interaction.guildId)
+			.catch(async (e) => {
+				log.error(`Deploy error: ${e}`);
+				await interaction
+					.reply({
+						content: `Slash commands failed to deploy: ${e}!`,
+					})
+					.catch(log.error);
+			})
+			.then(async () => {
+				await interaction.reply({
+					content: 'Slash commands deployed!',
+				});
 			});
-		} catch (e) {
-			await interaction
-				.reply({
-					content: `Slash commands failed to deploy: ${e}!`,
-				})
-				.catch(log.error);
-		}
 	},
 };
