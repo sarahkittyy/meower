@@ -1,4 +1,4 @@
-import { Client, Intents } from 'discord.js';
+import { Client, IntentsBitField } from 'discord.js';
 import { config } from 'dotenv';
 config();
 import 'module-alias/register';
@@ -10,10 +10,11 @@ import '@db/index';
 import dayjs from 'dayjs';
 
 const bot = new Client({
-	intents: new Intents([
-		Intents.FLAGS.GUILD_MESSAGES,
-		Intents.FLAGS.GUILDS,
-		Intents.FLAGS.GUILD_MEMBERS,
+	intents: new IntentsBitField([
+		IntentsBitField.Flags.GuildMessages,
+		IntentsBitField.Flags.MessageContent,
+		IntentsBitField.Flags.Guilds,
+		IntentsBitField.Flags.GuildMembers,
 	]),
 });
 

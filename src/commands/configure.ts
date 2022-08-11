@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
 import GuildSettings, { gsCache } from '@util/db/models/GuildSettings';
-import { AutocompleteInteraction, CommandInteraction, MessageEmbed } from 'discord.js';
+import { AutocompleteInteraction, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
 import ICommand from './command';
 import error from '@msg/error';
 import success from '@msg/success';
@@ -11,7 +11,6 @@ export default <ICommand>{
 	data: new SlashCommandBuilder() //
 		.setName('configure')
 		.setDescription('Configure bot settings')
-		.setDefaultPermission(false)
 		.addChannelOption((opt) =>
 			opt //
 				.setName('introchannel')
@@ -30,7 +29,7 @@ export default <ICommand>{
 				.setDescription('Are leave messages enabled?')
 				.setRequired(false)
 		),
-	callback: async (interaction: CommandInteraction) => {
+	callback: async (interaction: ChatInputCommandInteraction) => {
 		try {
 			await interaction.deferReply();
 			if (!interaction.guildId) {
@@ -56,7 +55,7 @@ export default <ICommand>{
 					embeds: [allSettings(guildSettings.toJSON())],
 				});
 			}
-			const returns: MessageEmbed[] = []; // any error embeds to return after option processing
+			const returns: EmbedBuilder[] = []; // any error embeds to return after option processing
 			if (options.introchannel != null) {
 				if (options.introchannel.type !== 'GUILD_TEXT') {
 					returns.push(error('Welcome channel is not a text channel!'));

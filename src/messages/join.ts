@@ -1,7 +1,7 @@
-import { GuildMember, MessageEmbed } from 'discord.js';
+import { GuildMember, EmbedBuilder } from 'discord.js';
 
-export default function join(member: GuildMember): MessageEmbed {
-	return new MessageEmbed() //
+export default function join(member: GuildMember): EmbedBuilder {
+	return new EmbedBuilder() //
 		.setTitle('A new person joined! <3')
 		.setDescription(
 			`Welcome ${member.displayName}!~<3\nSend a message saying hi and why you're here and someone'll give u roles <3`

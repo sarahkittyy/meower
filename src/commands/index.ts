@@ -4,7 +4,7 @@ import log from '@util/log';
 import constants from '@util/constants';
 import ICommand from './command';
 import fs from 'fs';
-import { AutocompleteInteraction, CommandInteraction } from 'discord.js';
+import { AutocompleteInteraction, ChatInputCommandInteraction } from 'discord.js';
 
 const commands: { [name: string]: ICommand } = fs //
 	// read commands
@@ -35,7 +35,7 @@ export const handleAutocomplete = async (interaction: AutocompleteInteraction) =
 	return cmd.autocomplete(interaction);
 };
 
-export const handleCommand = async (interaction: CommandInteraction) => {
+export const handleCommand = async (interaction: ChatInputCommandInteraction) => {
 	let cmd = commands[interaction.commandName];
 	if (!cmd) {
 		return log.error(`Command ${interaction.commandName} not found.`);

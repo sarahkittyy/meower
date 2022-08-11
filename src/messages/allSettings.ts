@@ -1,8 +1,8 @@
 import { IGuildSettings } from '@util/db/models/GuildSettings';
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from '@discordjs/builders';
 
-export default function allSettings(gs: IGuildSettings): MessageEmbed {
-	return new MessageEmbed() //
+export default function allSettings(gs: IGuildSettings): EmbedBuilder {
+	return new EmbedBuilder() //
 		.setColor(0x0000ff)
 		.setTitle('Current configuration')
 		.addFields(

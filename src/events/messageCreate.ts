@@ -1,5 +1,5 @@
 import IEventHook from './hook';
-import { Client } from 'discord.js';
+import { Client, PermissionsBitField } from 'discord.js';
 import { deploy } from '@commands/index';
 import log from '@util/log';
 
@@ -8,7 +8,11 @@ export default <IEventHook>{
 		client.on('messageCreate', async (message) => {
 			if (message.author.bot) return;
 			if (message.content === 'm.deploy') {
-				if (!message.member || !message.guildId) {
+				if (
+					!message.member ||
+					!message.guildId ||
+					!message.member?.permissions?.has(PermissionsBitField.Flags.ManageGuild, true)
+				) {
 					message.react('❌').catch(log.error);
 					return;
 				}

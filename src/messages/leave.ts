@@ -1,7 +1,7 @@
-import { GuildMember, MessageEmbed, PartialGuildMember } from 'discord.js';
+import { GuildMember, EmbedBuilder, PartialGuildMember } from 'discord.js';
 
-export default function leave(member: GuildMember | PartialGuildMember): MessageEmbed {
-	return new MessageEmbed() //
+export default function leave(member: GuildMember | PartialGuildMember): EmbedBuilder {
+	return new EmbedBuilder() //
 		.setTitle('A user left ;-;')
 		.setDescription(`bye ${member.displayName} ;w;`)
 		.setThumbnail(member.displayAvatarURL())

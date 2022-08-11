@@ -7,7 +7,7 @@ export default <IEventHook>{
 		client.on('interactionCreate', async (interaction: Interaction) => {
 			if (interaction.isAutocomplete()) {
 				handleAutocomplete(interaction);
-			} else if (interaction.isCommand()) {
+			} else if (interaction.isChatInputCommand()) {
 				handleCommand(interaction);
 			} else if (interaction.isButton()) {
 				// TODO: buttons:
