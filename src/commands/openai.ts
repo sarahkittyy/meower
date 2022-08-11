@@ -34,9 +34,11 @@ export default <ICommand>{
 			});
 		} catch (e: any) {
 			log.info(`OpenAI error: ${JSON.stringify(e.response)}`);
-			return interaction.editReply({
-				embeds: [error(`${e.response.data}`)],
-			});
+			return interaction
+				.editReply({
+					embeds: [error(`${e.response.data}`)],
+				})
+				.catch(log.error);
 		}
 	},
 };
