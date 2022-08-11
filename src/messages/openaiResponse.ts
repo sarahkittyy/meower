@@ -14,5 +14,6 @@ export default function openaiResponse(
 			url: 'https://beta.openai.com/playground',
 		})
 		.setTitle(prompt)
-		.setDescription(completion.data.choices?.[0].text ?? '[No response fetched...]');
+		.setDescription(completion.data.choices?.[0].text ?? '[No response fetched...]')
+		.setTimestamp();
 }

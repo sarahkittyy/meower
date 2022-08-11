@@ -29,12 +29,13 @@ export default <ICommand>{
 				best_of: 1,
 				max_tokens: 2048,
 			});
-			return interaction.editReply({
+			await interaction.editReply({
 				embeds: [openaiResponse(prompt, completion)],
 			});
-		} catch (e) {
+		} catch (e: any) {
+			log.info(`OpenAI error: ${JSON.stringify(e.response)}`);
 			return interaction.editReply({
-				embeds: [error(`OpenAI API error: ${e}`)],
+				embeds: [error(`${e.response.data}`)],
 			});
 		}
 	},
