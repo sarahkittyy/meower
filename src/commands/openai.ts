@@ -19,8 +19,8 @@ export default <ICommand>{
 				.setDescription('The prompt to send to OpenAI')
 		),
 	callback: async (interaction: ChatInputCommandInteraction) => {
-		await interaction.deferReply();
 		try {
+			await interaction.deferReply();
 			const prompt = interaction.options.getString('prompt', true);
 			const completion = await openai.createCompletion({
 				model: 'text-davinci-002',
