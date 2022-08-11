@@ -16,13 +16,14 @@ const commands: { [name: string]: ICommand } = fs //
 	// map them to their names
 	.reduce((obj, ic: ICommand) => ({ ...obj, [ic.data.name]: ic }), {});
 
-export const deploy = async (guildId: string) => {
+export const deploy = async (guildId: string): Promise<number> => {
 	log.info(`Deploying slash commands...`);
 	const rest = new REST({ version: '9' }).setToken(constants.TOKEN ?? 'UNSET');
 	await rest.put(Routes.applicationGuildCommands(constants.CLIENT_ID, guildId), {
 		body: Object.values(commands).map((c) => c.data.toJSON()),
 	});
-	log.info('Deployed slash commands!');
+	log.info(`Deployed ${Object.keys(commands).length} slash commands!`);
+	return Object.keys(commands).length;
 };
 
 export const handleAutocomplete = async (interaction: AutocompleteInteraction) => {

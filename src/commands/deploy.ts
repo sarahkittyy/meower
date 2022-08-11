@@ -12,9 +12,9 @@ export default <ICommand>{
 	callback: async (interaction: ChatInputCommandInteraction) => {
 		if (!interaction.guildId) throw 'Not in a guild!';
 		deploy(interaction.guildId)
-			.then(async () => {
+			.then(async (n) => {
 				await interaction.reply({
-					content: 'Slash commands deployed!',
+					content: `${n} slash commands deployed!`,
 				});
 			})
 			.catch(async (e) => {
