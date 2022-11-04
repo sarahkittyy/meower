@@ -2,6 +2,8 @@ import { SlashCommandBuilder } from '@discordjs/builders';
 import { ChatInputCommandInteraction } from 'discord.js';
 import ICommand from './command';
 
+import { stringify } from 'flatted';
+
 import log from '@util/log';
 
 import dalleResponse from '@msg/dalleResponse';
@@ -31,10 +33,10 @@ export default <ICommand>{
 				embeds: [dalleResponse(prompt, completion)],
 			});
 		} catch (e: any) {
-			log.info(`OpenAI error: ${JSON.stringify(e?.response)}`);
+			log.info(`OpenAI error: ${JSON.stringify(e?.response?.data)}`);
 			return interaction
 				.editReply({
-					embeds: [error(`${e?.response?.data}`)],
+					embeds: [error(stringify(e?.response?.data))],
 				})
 				.catch(log.error);
 		}

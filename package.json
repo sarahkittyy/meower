@@ -20,6 +20,7 @@
 		"discord-api-types": "^0.33.1",
 		"discord.js": "^14.2.0",
 		"dotenv": "^16.0.1",
+		"flatted": "^3.2.7",
 		"mariadb": "^3.0.0",
 		"module-alias": "^2.2.2",
 		"openai": "^3.1.0",
